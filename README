@@ -3,4 +3,5 @@ http://developers.box.com/view/
 
 Usage
 BoxView.init("yourtoken")
-BoxView::Documents.create("urlToSomeDocument")
+BoxView::Documents.create "urlToSomeDocument"
+BoxView::Documents.get_zip "boxId" 

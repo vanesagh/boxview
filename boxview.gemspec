@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'boxview'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2013-09-28'
   s.summary     = "Wrapper for box view api"
   s.description = "Wrapper for box view api"

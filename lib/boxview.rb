@@ -11,7 +11,6 @@ module BoxView
 
   def self.connection
     connection = Faraday.new(:url => BoxView.api_url) do |conn|
-      #conn.request  :url_encoded # convert request params as "www-form-urlencoded"
       conn.response :json, :content_type => /\bjson$/
       conn.adapter Faraday.default_adapter
     end
@@ -23,11 +22,16 @@ module BoxView
   module Documents
     @@endpoint = "documents"
 
+    # takes the url of where the document is in the cloud
     def self.create url 
       BoxView.connection.post do |request|
         request.url @@endpoint
         request.body = '{"url": "' + url + '"}'
       end
+    end
+
+    def self.get_zip box_id
+      BoxView.connection.get "documents/#{box_id}/content.zip"
     end
 
   end
