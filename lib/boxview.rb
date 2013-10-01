@@ -12,7 +12,6 @@ module BoxView
   def self.connection
     connection = Faraday.new(:url => BoxView.api_url) do |conn|
       #conn.request  :url_encoded # convert request params as "www-form-urlencoded"
-      conn.response :mashify
       conn.response :json, :content_type => /\bjson$/
       conn.adapter Faraday.default_adapter
     end
