@@ -2,7 +2,7 @@ require 'faraday_middleware'
 
 module BoxView
   def self.init token
-    @@api_token = token 
+    @@api_token = token
   end
 
   def self.api_url
@@ -22,16 +22,25 @@ module BoxView
   module Documents
     @@endpoint = "documents"
 
-    # takes the url of where the document is in the cloud
-    def self.create url 
+    # url: url of a document in the cloud
+    def self.create url
       BoxView.connection.post do |request|
         request.url @@endpoint
         request.body = '{"url": "' + url + '"}'
       end
     end
 
-    def self.get_zip box_id
-      BoxView.connection.get "documents/#{box_id}/content.zip"
+    def self.list
+      BoxView.connection.get "documents"
+    end
+
+    def self.get id
+      BoxView.connection.get "documents/#{id}"
+    end
+
+    # box_id of a processed document
+    def self.get_zip id
+      BoxView.connection.get "documents/#{id}/content.zip"
     end
 
   end

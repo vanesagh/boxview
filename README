@@ -2,6 +2,9 @@ This a Ruby wrapper for the new Box View api that is in beta.
 http://developers.box.com/view/
 
 Usage
-BoxView.init("yourtoken")
-BoxView::Documents.create "urlToSomeDocument"
+
+BoxView.init "yourToken"
+BoxView::Documents.create "http://urlToSomeDocument"
+BoxView::Documents.list
+BoxView::Documents.get "boxId" 
 BoxView::Documents.get_zip "boxId" 
