@@ -20,11 +20,14 @@ module BoxView
   end
 
   module Documents
-    # url: url of a document in the cloud
-    def self.create url
+    # attributes: a hash with url (required), name, and thumbnails
+    # url: string with url of a document in the cloud
+    # thumbnails:  string with widthxheight dimensions "128x128,256x256"
+    def self.create attributes
       BoxView.connection.post do |request|
         request.url "documents"
-        request.body = '{"url": "' + url + '"}'
+        attributes = { "url" => attributes[:url], "thumbnails" => attributes[:thumbnails] }
+        request.body = attributes.to_json
       end
     end
 
