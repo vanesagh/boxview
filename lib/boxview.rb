@@ -50,35 +50,13 @@ module BoxView
 
   end
 
-=begin
   module Sessions
-    @@endpoint = "sessions"
-
     def self.create document_id
       BoxView.connection.post do |request|
-        request.url @@endpoint
+        request.url "sessions"
         request.body = '{"document_id": "' + document_id + '"}'
       end
     end
   end
-
-  # Gets a session to view the link, should be in box api wrapper
-  def get_box_session
-    box_url = 'https://view-api.box.com/1'
-    connection = Faraday.new box_url do |conn|
-      conn.request :json
-      conn.response :json, :content_type => /\bjson$/
-      conn.adapter Faraday.default_adapter
-    end
-
-    result = connection.post do |req|
-      req.url 'sessions'
-      req.headers['Content-Type'] = 'application/json'
-      req.headers['Authorization'] = "Token SsLuBXaj1bGczeOtD9VxIYl0QpNC3ndM"
-      req.body = '{"document_id": "' + self.document.box_id + '"}'
-    end
-    result.env[:body]["id"]
-  end
-=end
 
 end
