@@ -52,10 +52,11 @@ module BoxView
 
   module Sessions
     def self.create document_id
-      BoxView.connection.post do |request|
+      response = BoxView.connection.post do |request|
         request.url "sessions"
-        request.body = '{"document_id": "' + document_id + '"}'
+        request.body = '{"document_id": "' + document_id.to_s + '"}'
       end
+      re
     end
   end
 
