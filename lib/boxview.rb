@@ -20,13 +20,14 @@ module BoxView
   end
 
   module Documents
-    # attributes: a hash with url (required), name, and thumbnails
+    # attributes: "url" "name" "thumbnails" and "non_svg"
     # url: string with url of a document in the cloud
+    # name: name of document
     # thumbnails:  string with widthxheight dimensions "128x128,256x256"
+    # non_svg: false by default, true if you want to support < ie9 aka non svg browsers
     def self.create attributes
       BoxView.connection.post do |request|
         request.url "documents"
-        attributes = { "url" => attributes[:url], "thumbnails" => attributes[:thumbnails] }
         request.body = attributes.to_json
       end
     end
