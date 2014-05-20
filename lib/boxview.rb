@@ -57,7 +57,6 @@ module BoxView
         request.url "sessions"
         request.body = '{"document_id": "' + document_id.to_s + '"}'
       end
-      re
     end
   end
 
